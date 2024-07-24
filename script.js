@@ -17,4 +17,10 @@ const symbols = '~`!@#$%^&*()_-+={[}]|:;"<,>.?/';
 let password = "";
 let passwordLength = 10;
 let checkCount = 1;
+handleSlider();
 
+//set password length
+function handleSlider (){
+    inputSlider.value = passwordLength;
+    lengthDisplay.innerText = passwordLength
+}
