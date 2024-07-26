@@ -21,7 +21,7 @@ uppercaseCheck.checked = true;
 handleSlider();
 setIndicator('#ccc')
 
-//set password length
+
 function handleSlider (){
     inputSlider.value = passwordLength;
     lengthDisplay.innerText = passwordLength
