@@ -16,14 +16,21 @@ const symbols = '~`!@#$%^&*()_-+={[}]|:;"<,>.?/';
 
 let password = "";
 let passwordLength = 10;
-let checkCount = 0;
+let checkCount = 1;
+uppercaseCheck.checked = true;
 handleSlider();
+setIndicator('#ccc')
 
 //set password length
 function handleSlider (){
     inputSlider.value = passwordLength;
     lengthDisplay.innerText = passwordLength
+    const min = inputSlider.min
+    const max = inputSlider.max
+    inputSlider.style.backgroundSize =  ((passwordLength - min) * 100) / (max - min) + "% 100%";
 }
+
+
 
 function setIndicator(color) {
    
@@ -78,7 +85,7 @@ async function copyContent(){
     
     try {
         await navigator.clipboard.writeText(passwordDisplay.value);
-        copyMsg.innerText = "copied";
+        copyMsg.innerText = "Copied!";
     } catch (error) {
         copyMsg.innerText = "failed";
     }
@@ -142,10 +149,11 @@ generateBtn.addEventListener('click' ,(e) => {
     if(checkCount <= 0) return;
 
     if(passwordLength < checkCount){
-        checkCount = passwordLength;
+        passwordLength = checkCount;
         handleSlider();
     }
 
+    
     // remove old password
 
     password = "";
@@ -186,8 +194,10 @@ generateBtn.addEventListener('click' ,(e) => {
         let randomIndex = getRndInteger(0, checkedCbArray.length);
         password += checkedCbArray[randomIndex]();
     }
+    
 
     password = shufflepassword(Array.from(password));
+    
     passwordDisplay.value = password;
 
     calcStrength();
